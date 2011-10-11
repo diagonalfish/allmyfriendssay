@@ -33,6 +33,7 @@ if (!$notoken) {
 }
 else {
 ?>
+          <div style="height: 8px"></div>
           <span style="font-size: 20px">In order to use AllMyFriendsSay, you need to authorize this app with Twitter. Click the button below.</span>
           <button id="index-authbutton" url="<?php echo $twitterObj->getAuthorizationUrl(); ?>"><img src="images/bird_16_blue.png"/> Authorize with Twitter</button>
         </div>

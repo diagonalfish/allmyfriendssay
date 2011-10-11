@@ -5,6 +5,7 @@
 		<link rel="stylesheet" href="style.css" type="text/css"/>
 		<link href='http://fonts.googleapis.com/css?family=Sue+Ellen+Francisco' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 	</head>
 <?php
 
@@ -16,6 +17,8 @@ include 'twitter-async/EpiOAuth.php';
 include 'twitter-async/EpiTwitter.php';
 
 $twitterObj = new EpiTwitter($consumer_key, $consumer_secret);
+
+$notoken = 0;
 
 if (isset($_GET['logout'])) {
   session_destroy();
@@ -36,8 +39,7 @@ else if (isset($_SESSION['oauth_token'])) {
 }
 
 else {
-  header("Location: ".$twitterObj->getAuthorizationUrl());
-  exit;
+  $notoken = 1;
 }
 ?>
 

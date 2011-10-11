@@ -81,3 +81,10 @@ button#index-searchbutton {
 	font-size: 20px;
 	margin-top: 10px;
 }
+
+button#index-authbutton {
+	width: 250px;
+	height: 40px;
+	font-size: 20px;
+	margin-top: 25px;
+}

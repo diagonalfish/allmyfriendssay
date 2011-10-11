@@ -1,0 +1,83 @@
+body {
+	font-family: "Droid Sans", "Verdana", "Arial", sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #F2F4F7;
+}
+
+/* INDEX */
+
+div#index-container {
+	margin: 100px auto 0 auto;
+	text-align: center;
+	width: 700px;
+}
+
+div#index-title {
+	margin: 0px auto 25px auto;
+	font-family: "Sue Ellen Francisco";
+	text-shadow: 2px 2px 3px #c0c0c0;
+	color: #0F245E;
+	font-size: 40px;
+	font-weight: bold;
+}
+
+div#index-subtitle {
+	text-shadow: 1px 1px 2px #c0c0c0;
+	margin: 0px auto 20px auto;
+	font-size: 20px;
+}
+
+div#index-searchdiv {
+	width: 550px;
+	height: 130px;
+	padding: 10px;
+	margin: 0 auto 0 auto;
+
+	/* magic */
+	-moz-border-radius:20px;
+	-webkit-border-radius:20px;
+	border-radius:20px;
+	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
+	-moz-box-shadow:0px 0px 10px #000000;
+	-webkit-box-shadow:0px 0px 10px #000000;
+	box-shadow:0px 0px 10px #000000;
+	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
+	background-image: -moz-linear-gradient(top, #f7f7f7, #bfbfbf);
+	background-image: -webkit-gradient(linear, center top, center bottom, from(#f7f7f7), to(#bfbfbf));
+	background-image: -o-linear-gradient(top, #f7f7f7, #bfbfbf);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f7f7f7', endColorstr='#bfbfbf');
+	/*INNER ELEMENTS MUST NOT BREAK THIS ELEMENTS BOUNDARIES*/
+	/*Element must have a height (not auto)*/
+	/*All filters must be placed together*/
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#f7f7f7', endColorstr='#bfbfbf')";
+	/*Element must have a height (not auto)*/
+	/*All filters must be placed together*/
+	background-image: linear-gradient(top, #f7f7f7, #bfbfbf);
+	-moz-background-clip: padding-box;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	/*Use "background-clip: padding-box" when using rounded corners to avoid the gradient bleeding through the corners*/
+	/*--IE9 WILL PLACE THE FILTER ON TOP OF THE ROUNDED CORNERS--*/
+
+}
+
+input#index-searchinput {
+	font-size: 25px;
+	height: 30px;
+	width: 350px;
+	margin-top: 15px;
+}
+
+select#index-searchdepth {
+	font-size: 25px;
+	height: 30px;
+	width: 80px;
+}
+
+button#index-searchbutton {
+	width: 160px;
+	height: 40px;
+	font-size: 20px;
+	margin-top: 10px;
+}

@@ -1,6 +1,0 @@
-All My Friends Say
-==================
-
-The local twitter search/sentiment app
-
-More to come soon!

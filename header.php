@@ -22,8 +22,7 @@ $notoken = 0;
 
 if (isset($_GET['logout'])) {
   session_destroy();
-  echo "Logged out.";
-  exit;
+  header("Location: .");
 }
 
 if (isset($_GET['oauth_token']) && !isset($_SESSION['oauth_token'])) {
@@ -32,6 +31,7 @@ if (isset($_GET['oauth_token']) && !isset($_SESSION['oauth_token'])) {
   $twitterObj->setToken($token->oauth_token, $token->oauth_token_secret);
   $_SESSION['oauth_token'] = $token->oauth_token;
   $_SESSION['oauth_secret'] = $token->oauth_token_secret;
+  header("Location: .");
 }
 
 else if (isset($_SESSION['oauth_token'])) {

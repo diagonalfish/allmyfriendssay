@@ -4,6 +4,12 @@
 $redis = new Redis();
 $redis->connect('127.0.0.1');
 
+function redis_exists($key) {
+	global $redis;
+	$result = $redis->exists($key);
+	return $result;
+}
+
 function redis_get($key) {
 	global $redis;
 	$result = $redis->get($key);

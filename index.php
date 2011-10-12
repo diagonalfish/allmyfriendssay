@@ -1,5 +1,5 @@
 <?php
-include "header.php";
+include "include/header.php";
 
 /*
 echo "Your twitter username is ".$_SESSION['userinfo']['screen_name']." and your profile picture is <img src=\"{$_SESSION['userinfo']['profile_image_url']}\">";
@@ -39,8 +39,8 @@ else {
         </div>
     </div>
 
-<script type="text/javascript" src="index.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
 <?php
 }
-include "footer.php";
+include "include/footer.php";
 ?>

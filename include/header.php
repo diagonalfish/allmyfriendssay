@@ -10,6 +10,8 @@
 <?php
 
 include "twitter_access.php";
+include "redis.php";
+include "sentiment.php";
 
 if (isset($_GET['logout'])) {
   session_destroy();

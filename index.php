@@ -12,10 +12,6 @@ echo "Your twitter username is ".$_SESSION['userinfo']['screen_name']." and your
         <div id="index-searchdiv">
 <?php
 if (!$notoken) {
-  if (!isset($_SESSION['userinfo'])) {
-    $twitterInfo = $twitterObj->get_accountVerify_credentials();
-    $_SESSION['userinfo'] = $twitterInfo->response;
-  }
 ?>
           Your Twitter: &nbsp;<img src="<?php echo $_SESSION['userinfo']['profile_image_url']; ?>" width="20"/>
           <?php echo $_SESSION['userinfo']['screen_name']; ?><br/>
@@ -38,9 +34,10 @@ else {
           <button id="index-authbutton" url="<?php echo $twitterObj->getAuthorizationUrl(); ?>"><img src="images/bird_16_blue.png"/> Authorize with Twitter</button>
         </div>
     </div>
-
-<script type="text/javascript" src="js/index.js"></script>
 <?php
 }
+?>
+<script type="text/javascript" src="js/index.js"></script>
+<?php
 include "include/footer.php";
 ?>

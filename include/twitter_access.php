@@ -26,4 +26,11 @@ else if (isset($_SESSION['oauth_token'])) {
 else {
   $notoken = 1;
 }
+
+if (!$notoken) {
+	if (!isset($_SESSION['userinfo'])) {
+	    $twitterInfo = $twitterObj->get_accountVerify_credentials();
+	    $_SESSION['userinfo'] = $twitterInfo->response;
+	}
+}
 ?>

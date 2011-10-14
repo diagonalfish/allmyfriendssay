@@ -18,13 +18,15 @@ if (!$notoken) {
 
           <input type="text" id="index-searchinput" value="Enter Search Keywords"></input>&nbsp;
           <span style="font-size: 25px">Depth:</span>
-            <select id="index-searchdepth">
+            <select id="index-searchdepth" disabled>
               <option value="1">1</option>
               <option value="2">2</option>
           </select>
           <br/>
           <button id="index-searchbutton">Search!
           </button>
+          <div id="search-status" style="display:none"><img src="images/ajax-loader.gif"/> <span id="search-status-message"></span></div>
+          <div id="search-error" style="display:none"></div>
 <?php
 }
 else {

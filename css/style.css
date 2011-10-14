@@ -88,3 +88,14 @@ button#index-authbutton {
 	font-size: 20px;
 	margin-top: 25px;
 }
+
+div#search-status {
+	margin-top: 25px;
+	font-size: 20px;
+}
+
+div#search-error {
+	color: red;
+	margin-top: 25px;
+	font-size: 20px;
+}

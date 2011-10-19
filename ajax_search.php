@@ -11,6 +11,8 @@ include "include/sentiment.php";
 
 $query = $_REQUEST['query'];
 
+$_SESSION['search']['query'] = $query;
+
 //Current user's ID
 $my_id = $_SESSION['userinfo']['id_str'];
 
@@ -34,8 +36,15 @@ $index = genIndex($tweets);
 //Search!
 $matchTweets = doSearch($index, $query);
 
+if (sizeof($matchTweets) == 0) {
+	echo "0";
+	exit;
+}
+
 $sentimentTotal = 0;
 $nonzeroTweets = 0;
+
+$searchTweets = array();
 
 foreach(array_keys($matchTweets) as $mt) {
 	$tweet = $tweets[$mt];
@@ -44,10 +53,20 @@ foreach(array_keys($matchTweets) as $mt) {
 		$sentimentTotal += $sentiment;
 		$nonzeroTweets++;
 	}
-	echo "<b>".$tweet['user']['screen_name']."</b>: ".$tweet['text']." <i>(".$sentiment.")</i><br/>";
+	
+	$searchTweets[] = array('tweet' => $tweet, 'sentiment' => number_format($sentiment, 2));
+	//echo "<b>".$tweet['user']['screen_name']."</b>: ".$tweet['text']." <i>(".$sentiment.")</i><br/>";
 }
 
-echo "<br/><br/><b>Average Sentiment Score: ".$sentimentTotal/$nonzeroTweets."</b>";
+$avgSentiment = number_format($sentimentTotal/$nonzeroTweets, 2);
+
+$_SESSION['search']['tweets'] = $searchTweets;
+$_SESSION['search']['avgSentiment'] = $avgSentiment;
+
+
+echo "1";
+
+//echo "<br/><br/><b>Average Sentiment Score: ".$sentimentTotal/$nonzeroTweets."</b>";
 
 function genIndex($tweets) {
     $dictionary = array();
@@ -80,6 +99,7 @@ function doSearch($index, $query) {
 
 	foreach($query as $qterm) {
 	        $entry = $index['dictionary'][$qterm];
+			if (!$entry) continue;
 	        foreach($entry['postings'] as $docID => $posting) {
 	                $matchDocs[$docID] +=
 	                                $posting['tf'] *

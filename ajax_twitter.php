@@ -6,9 +6,6 @@
 include "include/twitter_access.php";
 include "include/redis.php";
 
-
-$query = $_REQUEST['query'];
-
 if ($notoken) header("Location: .");
 
 $twi_stat = $twitter->get("/account/rate_limit_status.json");

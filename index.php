@@ -14,7 +14,7 @@ echo "Your twitter username is ".$_SESSION['userinfo']['screen_name']." and your
 if (!$notoken) {
 ?>
           Your Twitter: &nbsp;<img src="<?php echo $_SESSION['userinfo']['profile_image_url']; ?>" width="20"/>
-          <?php echo $_SESSION['userinfo']['screen_name']; ?> [<a href="logout.php">Logout</a>]<br/>
+          <?php echo $_SESSION['userinfo']['screen_name']; ?> [<a href="?logout=1">Logout</a>]<br/>
 
           <input type="text" id="index-searchinput" value="Enter Search Keywords"></input>&nbsp;
           <span style="font-size: 25px">Depth:</span>

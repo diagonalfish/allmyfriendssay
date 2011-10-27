@@ -34,7 +34,7 @@ foreach ($friends as $friend) {
 $index = genIndex($tweets);
 
 //Search!
-$matchTweets = doSearch($index, $query);
+$matchTweets = doSearch($index);
 
 if (sizeof($matchTweets) == 0) {
 	echo "0";
@@ -55,7 +55,6 @@ foreach(array_keys($matchTweets) as $mt) {
 	}
 	
 	$searchTweets[] = array('tweet' => $tweet, 'sentiment' => number_format($sentiment, 2));
-	//echo "<b>".$tweet['user']['screen_name']."</b>: ".$tweet['text']." <i>(".$sentiment.")</i><br/>";
 }
 
 $avgSentiment = number_format($sentimentTotal/$nonzeroTweets, 2);
@@ -63,12 +62,15 @@ $avgSentiment = number_format($sentimentTotal/$nonzeroTweets, 2);
 $_SESSION['search']['tweets'] = $searchTweets;
 $_SESSION['search']['avgSentiment'] = $avgSentiment;
 
-
 echo "1";
 
 //echo "<br/><br/><b>Average Sentiment Score: ".$sentimentTotal/$nonzeroTweets."</b>";
 
 function genIndex($tweets) {
+	global $query;
+	
+	$aquery = preg_split("/\W+/", strtolower($query));
+	
     $dictionary = array();
     $docCount = array();
 
@@ -77,6 +79,7 @@ function genIndex($tweets) {
             $docCount[$tweetID] = count($terms);
 
             foreach($terms as $term) {
+					if (!in_array($term, $aquery)) continue;
                     if(!isset($dictionary[$term])) {
                             $dictionary[$term] = array('df' => 0, 'postings' => array());
                     }
@@ -92,12 +95,14 @@ function genIndex($tweets) {
     return array('docCount' => $docCount, 'dictionary' => $dictionary);
 }
 
-function doSearch($index, $query) {
-	$query = preg_split("/\W+/", strtolower($query));
+function doSearch($index) {
+	global $query;
+
+	$aquery = preg_split("/\W+/", strtolower($query));
 	$matchDocs = array();
 	$docCount = count($index['docCount']);
 
-	foreach($query as $qterm) {
+	foreach($aquery as $qterm) {
 	        $entry = $index['dictionary'][$qterm];
 			if (!$entry) continue;
 	        foreach($entry['postings'] as $docID => $posting) {

@@ -35,14 +35,17 @@ if (!$friends) {
 		$friends = array_slice($friends, 0, 100);
 	}
 
-	redis_set("friends:".$my_id, $friends);
+	redis_set("friends:".$my_id, $friends['ids']);
+	$friends = $friends['ids'];
 }
 
 //Step 2: Fetch tweets for each of these IDs and store them.
 $twitter->useAsynchronous(true);
 $responses = array();
+
 foreach($friends as $friend) {
 	$have_tweets = redis_exists("tweets:".$friend);
+
 	if ($have_tweets) {
 		continue;
 	}
